@@ -1,0 +1,28 @@
+
+<?php
+
+add_filter( 'woocommerce_states', 'fs_add_uae_emirates' );
+
+function fs_add_uae_emirates( $states ) {
+ $states['AE'] = array(
+ 	'AZ' => __( 'Abu Dhabi', 'woocommerce' ),
+ 	'AJ' => __( 'Ajman', 'woocommerce' ),
+ 	'FU'  => __( 'Fujairah', 'woocommerce' ),
+ 	'SH' => __( 'Sharjah', 'woocommerce' ),
+ 	'DU'  => __( 'Dubai', 'woocommerce' ),
+ 	'RK' => __( 'Ras Al Khaimah', 'woocommerce' ),
+ 	'UQ'  => __( 'Umm Al Quwain', 'woocommerce' ),
+ );
+ return $states;
+}
+
+
+
+
+add_filter( 'woocommerce_get_country_locale', 'uae_country_locale_change', 10, 1 );
+function uae_country_locale_change( $locale ) {
+    $locale['AE']['postcode']['required'] = false;
+	$locale['AE']['postcode']['hidden'] = false;
+
+    return $locale;
+}
